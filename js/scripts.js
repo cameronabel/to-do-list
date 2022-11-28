@@ -30,7 +30,7 @@ class ToDoList {
    * @param {Number} index must be an integer
    */
   removeTask(index) {
-    this.tasks.splice(index, 1)
+    this.tasks.splice(index, 1);
   }
   /**
    * Marks the task at the given index as complete.
@@ -71,12 +71,12 @@ function buildRow(task, index, list) {
   checkSpan.classList.add('check-span')
   const checkBox = document.createElement('input');
   checkBox.type = "checkbox";
-  checkBox.checked = task.isDone
+  checkBox.checked = task.isDone;
   checkBox.addEventListener("click", function() {
     toggleTaskHandler(list, index);
   })
-  checkSpan.append(checkBox)
-  taskDiv.append(checkSpan)
+  checkSpan.append(checkBox);
+  taskDiv.append(checkSpan);
   
   const nameSpan = document.createElement('span');
   nameSpan.classList.add('name-span');
@@ -129,7 +129,7 @@ function buildList(list) {
       pending.append(row);
     }
   })
-  return [pending, completed]
+  return [pending, completed];
 }
 
 /**
@@ -179,21 +179,21 @@ function toggleTaskHandler(list, index) {
 function editTaskHandler(list, index) {
   const row = document.getElementById(index.toString());
 
-  const nameField = row.getElementsByClassName('name-span')[0]
-  const prevName = nameField.innerText
-  nameField.innerHTML = `<input id='name-edit' value=${prevName}>`
+  const nameField = row.getElementsByClassName('name-span')[0];
+  const prevName = nameField.innerText;
+  nameField.innerHTML = `<input id='name-edit' value=${prevName}>`;
 
-  const descField = row.getElementsByClassName('desc-span')[0]
-  const prevDesc = descField.innerText
-  descField.innerHTML = `<textarea id='desc-edit'>${prevDesc}</textarea>`
+  const descField = row.getElementsByClassName('desc-span')[0];
+  const prevDesc = descField.innerText;
+  descField.innerHTML = `<textarea id='desc-edit'>${prevDesc}</textarea>`;
 
-  const dateField = row.getElementsByClassName('date-span')[0]
+  const dateField = row.getElementsByClassName('date-span')[0];
   const prevDate = dateField.innerText;
   let isoDate = new Date(prevDate);
   isoDate = isoDate.toISOString().slice(0, -14);
-  dateField.innerHTML = `<input id='date-edit' type='date' value='${isoDate}'>`
+  dateField.innerHTML = `<input id='date-edit' type='date' value='${isoDate}'>`;
 
-  const toolsField = row.getElementsByClassName('tools-span')[0]
+  const toolsField = row.getElementsByClassName('tools-span')[0];
   toolsField.innerHTML = "";
   const saveButton = document.createElement("button");
   saveButton.innerText = "✔️";
