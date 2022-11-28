@@ -246,6 +246,7 @@ function replaceButtons(list, index) {
 }
 
 window.onload = function () {
+  const toDoList = new ToDoList();
   const addForm = document.getElementById("taskInput");
   addForm.addEventListener("submit", function () {
     addTaskHandler(toDoList);
