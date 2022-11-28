@@ -8,6 +8,7 @@ function Task(name, description, dueDate) {
   this.name = name;
   this.description = description;
   this.dueDate = new Date(dueDate);
+  this.dueDate.setDate(this.dueDate.getDate() + 1);
   this.isDone = false;
 }
 
@@ -207,7 +208,8 @@ function editTaskHandler(list, index) {
     descField.innerText = newDesc;
 
     let newDate = document.getElementById('date-edit').value;
-    newDate = new Date(newDate)
+    newDate = new Date(newDate);
+    newDate.setDate(newDate.getDate() + 1)
     list.tasks[index].dueDate = newDate;
     dateField.innerText = newDate.toLocaleDateString('en-us',
       {year:"numeric", month:"short", day:"numeric"});
