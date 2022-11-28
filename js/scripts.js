@@ -1,3 +1,9 @@
+/**
+ * Task constructor.
+ * @param {String} name 
+ * @param {String} description 
+ * @param {String} dueDate in a parsable format
+ */
 function Task(name, description, dueDate) {
   this.name = name;
   this.description = description;
@@ -6,49 +12,71 @@ function Task(name, description, dueDate) {
 }
 
 class ToDoList {
+  /**
+   * Constructs a new ToDoList with an empty list of tasks.
+   */
   constructor() {
     this.tasks = [];
   }
+  /**
+   * Adds the task to the ToDoList
+   * @param {Task} task 
+   */
   addTask(task) {
     this.tasks.push(task);
   }
+  /**
+   * Removes the task at the given index.
+   * @param {Number} index must be an integer
+   */
   removeTask(index) {
     this.tasks.splice(index, 1)
   }
+  /**
+   * Marks the task at the given index as complete.
+   * @param {Number} index must be an integer
+   */
   finishTask(index) {
     this.tasks[index].isDone = true;
   }
+  /**
+   * Marks the task at the given index as incomplete.
+   * @param {Number} index must be an integer
+   */
   reopenTask(index) {
     this.tasks[index].isDone = false;
   }
+  /**
+   * Toggles the completeness status for the Task at the given index.
+   * @param {Number} index must be an integer
+   */
   toggleTask(index) {
     this.tasks[index].isDone = !this.tasks[index].isDone;
   }
-  sort(by) {
-    this.tasks.sort(function(a, b) {
-      if (a[by] < b[by]) {
-        return -1;
-      } else if (b[by] < a[by]) {
-        return 1;
-      } else {
-        return 0;
-      }
-    })
-  }
 }
 
+/**
+ * Builds a row div from a given task.
+ * @param {Task} task a Task
+ * @param {Number} index must be an integer
+ * @param {ToDoList} list A ToDoList
+ * @returns a div to place on-page
+ */
 function buildRow(task, index, list) {
   const taskDiv = document.createElement('div');
   taskDiv.classList.add('task-div');
   taskDiv.id = index;
 
+  const checkSpan = document.createElement('span');
+  checkSpan.classList.add('check-span')
   const checkBox = document.createElement('input');
   checkBox.type = "checkbox";
   checkBox.checked = task.isDone
   checkBox.addEventListener("click", function() {
     toggleTaskHandler(list, index);
   })
-  taskDiv.append(checkBox)
+  checkSpan.append(checkBox)
+  taskDiv.append(checkSpan)
   
   const nameSpan = document.createElement('span');
   nameSpan.classList.add('name-span');
@@ -62,7 +90,8 @@ function buildRow(task, index, list) {
 
   const dateSpan = document.createElement('span');
   dateSpan.classList.add('date-span');
-  dateSpan.append(task.dueDate.toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"}));
+  dateSpan.append(task.dueDate.toLocaleDateString('en-us',
+    {year:"numeric", month:"short", day:"numeric"}));
   taskDiv.append(dateSpan);
 
   const toolsSpan = document.createElement('span');
@@ -84,7 +113,11 @@ function buildRow(task, index, list) {
   return taskDiv;
 }
 
-
+/**
+ * Compiles and arranges rows into pending and complete areas.
+ * @param {ToDoList} list A ToDoList
+ * @returns {Array} pending and completed div areas in a two-element array
+ */
 function buildList(list) {
   const pending = document.createElement("div");
   const completed = document.createElement("div");
@@ -99,6 +132,10 @@ function buildList(list) {
   return [pending, completed]
 }
 
+/**
+ * Clears existing HTML elements and replaces with updated list(s).
+ * @param {ToDoList} list A ToDoList
+ */
 function updateList(list) {
   const listArea = document.getElementById("to-do-list");
   const completeArea = document.getElementById("completed-tasks");
@@ -109,6 +146,15 @@ function updateList(list) {
   completeArea.append(completed);
 }
 
+/**
+ * Clears the new task input elements.
+ */
+function clearInputs() {
+  document.getElementById("inputName").value = "";
+  description = document.getElementById("inputDescription").value = "";
+  document.getElementById("inputDate").value = "";
+}
+
 function addTaskHandler(list) {
   event.preventDefault();
   const name = document.getElementById("inputName").value;
@@ -116,6 +162,7 @@ function addTaskHandler(list) {
   const inputDate = document.getElementById("inputDate").value;
   const newTask = new Task(name, description, inputDate);
   list.addTask(newTask);
+  clearInputs();
   updateList(list);
 }
 
@@ -162,7 +209,8 @@ function editTaskHandler(list, index) {
     let newDate = document.getElementById('date-edit').value;
     newDate = new Date(newDate)
     list.tasks[index].dueDate = newDate;
-    dateField.innerText = newDate.toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"});
+    dateField.innerText = newDate.toLocaleDateString('en-us',
+      {year:"numeric", month:"short", day:"numeric"});
 
     replaceButtons(list, index);
   });
@@ -198,12 +246,6 @@ function replaceButtons(list, index) {
 }
 
 window.onload = function () {
-  //test task code
-  const task = new Task('Code Sample', 'Complete code sample for EfU', '11/27/2022');
-  const toDoList = new ToDoList();
-  toDoList.addTask(task);
-  updateList(toDoList);
-
   const addForm = document.getElementById("taskInput");
   addForm.addEventListener("submit", function () {
     addTaskHandler(toDoList);

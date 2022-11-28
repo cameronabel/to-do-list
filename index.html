@@ -9,25 +9,29 @@
 </head>
 
 <body>
-  <h1>To Do List</h1>
-  <div class="add-task-container">
-    <h2>Add a Task:</h2>
-    <form id="taskInput">
-      <label for="inputName">Name:</label>
-      <input type="text" id="inputName">
-      <label for="inputDescription">Description:</label>
-      <input type="text" id="inputDescription">
-      <label for="dueDate">Due Date:</label>
-      <input type="date" id="inputDate">
-      <button>Add</button>
-    </form>
-  </div>
-  <h2>Pending Tasks</h2>
-  <div id="to-do-list" class="list-container">
+  <div id="page">
+    <h1>To Do List</h1>
+    <div class="add-task-container">
+      <h2>Add a Task:</h2>
+      <form id="taskInput">
+        <label for="inputName">Name:</label>
+        <input type="text" id="inputName">
+        <label for="inputDescription">Description:</label>
+        <input type="text" id="inputDescription">
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="inputDate">
+        <button>Add</button>
+      </form>
+    </div><!-- end add-task-container -->
+    <div id="display-area">
+      <h2>Pending Tasks</h2>
+      <div id="to-do-list" class="list-container">
 
-  </div>
-  <h2>Completed Tasks</h2>
-  <div id="completed-tasks" class="list-container">
-    
-  </div>
+      </div> <!-- end to-do-list -->
+      <h2>Completed Tasks</h2>
+      <div id="completed-tasks" class="list-container">
+        
+      </div> <!-- end completed-tasks -->
+    </div> <!-- end display-area -->
+  </div> <!-- end page -->
 </body>

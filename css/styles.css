@@ -1,0 +1,85 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial";
+  font-size: 20;
+}
+
+body {
+  background-color: #EEEEEE;
+}
+
+#page {
+  min-width: 480px;
+  width: 90vw;
+  max-width: 960px;
+  height: 90vh;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+  overflow: scroll;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: #CCCCCC;
+}
+
+h1 {
+  text-align: center;
+}
+
+#display-area h2 {
+  text-align: center;
+}
+
+.task-div {
+  border: 1px solid;
+  display: inline-block;
+  box-sizing: border-box;
+  width:100%;
+}
+
+.task-div span {
+  float: left;
+}
+
+.check-span {
+  width:2%;
+  min-width: 10px;
+  max-width: 20px;
+}
+
+.name-span {
+  width: 12%;
+  min-width: 58px;
+  max-width: 116px;
+}
+
+.desc-span {
+  width: 55%;
+  min-width: 272px;
+  max-width: 564px;
+  height: 2.25em;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-left: 8px;
+}
+
+.date-span {
+  width: 19%;
+  min-width: 96px;
+  max-width: 192px;
+}
+
+.tool-span {
+  width: 6%;
+  min-width: 34px;
+  max-width: 68px;
+}
+
+.tool-span button {
+  float: right;
+}
